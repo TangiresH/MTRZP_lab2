@@ -1,0 +1,22 @@
+{
+  "name": "mtrzp_lab2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TangiresH/MTRZP_lab2.git"
+  },
+  "author": "tangiresH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TangiresH/MTRZP_lab2/issues"
+  },
+  "homepage": "https://github.com/TangiresH/MTRZP_lab2#readme",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}
