@@ -43,32 +43,37 @@ class DoublyList {
 
     insert(elem, index) {
         if (typeof elem !== "string") {
-            throw new Error("Invalid input data type detected. Please provide input as a string.")
-        }
-        if (index < 0 || index >= this.size) {
-            throw new Error("Index out of bounds. Please provide a valid index.")
+            throw new Error("Invalid input data type detected. Please provide input as a string.");
         }
 
-        const node = new DoublyListNode(elem)
-        let current = this.head
-        let i = 0
-
-        while (i < index) {
-            current = current.next
-            i++
+        if (index < 0 || index > this.size) {
+            throw new Error("Index out of bounds. Please provide a valid index.");
         }
+
+        const node = new DoublyListNode(elem);
+
         if (index === 0) {
-            node.next = current
-            current.prev = node
-            this.head = node
+            node.next = this.head;
+            if (this.head) {
+                this.head.prev = node;
+            }
+            this.head = node;
         } else {
-            node.prev = current.prev
-            node.next = current
-            current.prev.next = node
-            current.prev = node
+            let current = this.head;
+            for (let i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            node.prev = current;
+            node.next = current.next;
+            if (current.next) {
+                current.next.prev = node;
+            }
+            current.next = node;
         }
-        this.size++
+
+        this.size++;
     }
+
 
     delete(index) {
         if (index < 0 || index >= this.size) {
@@ -141,17 +146,15 @@ class DoublyList {
 
     get(index) {
         if (index < 0 || index >= this.size) {
-            return new Error("Index out of bounds. Please provide a valid index.")
+            return new Error("Invalid index");
         }
-
-        let currentIndex = 0
-        let currentNode = this.head
-        while (currentIndex < index) {
-            currentNode = currentNode.next
-            currentIndex++
+        let current = this.head;
+        let i = 0;
+        while (i < index) {
+            current = current.next;
+            i++;
         }
-
-        return currentNode.value
+        return current.value;
     }
 
     clone() {
